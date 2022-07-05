@@ -4933,7 +4933,7 @@ input[type=button].btn-block {
 }
 
 .navbar-dark .navbar-brand {
-  color: #33ccff;
+  color: #fff;
 }
 
 .navbar-dark .navbar-brand:hover,
@@ -4942,7 +4942,7 @@ input[type=button].btn-block {
 }
 
 .navbar-dark .navbar-nav .nav-link {
-  color: rgba(51,204,255, 0.8);
+  color: rgba(255, 255, 255, 0.5);
 }
 
 .navbar-dark .navbar-nav .nav-link:hover,

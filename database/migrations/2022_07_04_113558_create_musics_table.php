@@ -13,16 +13,16 @@ class CreateMusicsTable extends Migration
      */
     public function up()
     {
-        Schema::create('music', function (Blueprint $table) {
+        Schema::create('musics', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title'); // ニュースのタイトルを保存するカラム
-            $table->string('artist_name'); 
+            $table->string('title');
+            $table->string('artist_name');
             $table->string('anime_official_cite');
-            $table->string('artist_official_cite');// ニュースの本文を保存するカラム
+            $table->string('artist_official_cite');
             $table->string('image_path')->nullable();
-            $table->string('genres_id');
-            $table->string('music_tones_id');
-            $table->string('genders_id');// 画像のパスを保存するカラム
+            $table->integer('genre_id');
+            $table->integer('music_tone_id');
+            $table->integer('gender_id');
             $table->timestamps();
         });
     }
