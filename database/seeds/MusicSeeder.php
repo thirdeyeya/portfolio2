@@ -20,7 +20,7 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/CORE PRIDE.jpg',
             'genre_id' => 1,
             'music_tone_id' => 2,
-            'gender_id' => config('gender.man')
+            'gender_id' => config('gender.男性シンガー')
         ]);
         
         Music::create([
@@ -31,7 +31,7 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/huwahuwatime.jpg',
             'genre_id' => 2,
             'music_tone_id' => 1,
-            'gender_id' => config('gender.woman')
+            'gender_id' => config('gender.女性シンガー')
         ]);
     }
 }

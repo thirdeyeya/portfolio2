@@ -54,10 +54,18 @@ class MusicController extends Controller
         $cond_gender = $request->gender_id;
         $genres = Genre::all();
         $music_tones = Music_tone::all();
-        $genders = Gender::all();
-        $posts = Music::where('genre_id', $cond_genre,)->get();
-        $posts = Music::where('music_tone_id', $cond_music_tone,)->get();
-        $posts = Music::where('gender_id', $cond_gender,)->get();
+        $genders = config('gender');
+        $q = Music::query();
+        if($cond_genre != 0){
+            $q->where('genre_id', $cond_genre);
+        }
+        if($cond_music_tone != 0){
+            $q->where('music_tone_id', $cond_music_tone);
+        }
+        if($cond_gender != 0){
+            $q->where('gender_id', $cond_gender);
+        }
+        $posts = $q->get();
         return view('admin.music.index', ['posts' => $posts, 'cond_genre' => $cond_genre, 'genres' => $genres, 'cond_music_tone' => $cond_music_tone, 'music_tones' => $music_tones, 'cond_gender' => $cond_gender, 'genders' => $genders]);
     }
 

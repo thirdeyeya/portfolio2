@@ -31,17 +31,24 @@
     <h4>性別</h4>
       <select name ="gender_id">
         <option value="0" @if($cond_gender == 0) selected="selected" @endif>---</option>
-        @foreach( $genders as $gender)
-          <option value="{{ $gender->id }}" @if($cond_gender == $gender->id) selected="selected" @endif>{{ $gender->title }}</option>
-        @endforeach  
+        @foreach($genders as $str => $num)
+          <option value="{{ $num }}" @if($cond_gender == $num) selected="selected" @endif>{{ $str }}</option>
+        @endforeach 
       </select>
     </div>    
   </form> 
   </div>
+  <div class="container">
   <div class="row">
-    <div class="list-search col-md-12 mx-auto">
-      <div class="row">
-        <table class="table table-white">
+    <div class="col">
+      <table class="table table-white">
+        $start = 0;
+        $end = 4;
+        for($search = $start; $search < $end; $search++){
+          if($search == $end){
+            $search = $start
+          }
+        }  
             @foreach($posts as $search)
             <tr>
               <td>
