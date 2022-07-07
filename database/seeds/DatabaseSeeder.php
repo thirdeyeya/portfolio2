@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(GenreSeeder::class);
         $this->call(Music_toneSeeder::class);
-        $this->call(GenderSeeder::class);
         $this->call(MusicSeeder::class);
     }
 }

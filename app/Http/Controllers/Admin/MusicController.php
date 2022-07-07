@@ -6,13 +6,16 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Music;
-
+use App\Genre;
+use App\Music_tone;
+use App\Gender;
 
 class MusicController extends Controller
 {
     public function add()
     {
-        return view('admin.music.search');
+        
+        return view('admin.music.comment');
     }
 
     
@@ -46,15 +49,16 @@ class MusicController extends Controller
 
     public function index(Request $request)
     {
-        $cond_title = $request->cond_title;
-        if ($cond_title != '') {
-            // 検索されたら検索結果を取得する
-            $posts = Music::where('title', $cond_title)->get();
-        } else {
-            // それ以外はすべてのニュースを取得する
-            $posts = Music::all();
-        }
-        return view('admin.music.index', ['posts' => $posts, 'cond_title' => $cond_title]);
+        $cond_genre = $request->genre_id;
+        $cond_music_tone = $request->music_tone_id;
+        $cond_gender = $request->gender_id;
+        $genres = Genre::all();
+        $music_tones = Music_tone::all();
+        $genders = Gender::all();
+        $posts = Music::where('genre_id', $cond_genre,)->get();
+        $posts = Music::where('music_tone_id', $cond_music_tone,)->get();
+        $posts = Music::where('gender_id', $cond_gender,)->get();
+        return view('admin.music.index', ['posts' => $posts, 'cond_genre' => $cond_genre, 'genres' => $genres, 'cond_music_tone' => $cond_music_tone, 'music_tones' => $music_tones, 'cond_gender' => $cond_gender, 'genders' => $genders]);
     }
 
     public function edit(Request $request)

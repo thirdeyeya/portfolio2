@@ -11,6 +11,7 @@ class Music_toneSeeder extends Seeder
      */
     public function run()
     {
+        Music_tone::truncate();
         Music_tone::create([
             'title' => '楽しい',
         ]);

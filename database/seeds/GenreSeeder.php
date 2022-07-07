@@ -11,6 +11,7 @@ class GenreSeeder extends Seeder
      */
     public function run()
     {
+        Genre::truncate();
         Genre::create([
             'title' => 'ロック',
         ]);

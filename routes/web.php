@@ -16,9 +16,9 @@
 });
 */
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
-     Route::get('music/create', 'Admin\MusicController@add');
+     Route::get('music/create', 'Admin\MusicController@add')->name('comment');
      Route::post('music/create', 'Admin\MusicController@create'); 
-     Route::get('music', 'Admin\MusicController@index')->name('comment');
+     Route::get('music', 'Admin\MusicController@index');
      Route::get('profile/create', 'Admin\ProfileController@add');
      Route::post('profile/create', 'Admin\ProfileController@create');
      Route::get('profile/edit', 'Admin\ProfileController@edit');
@@ -37,6 +37,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
 });
 Auth::routes();
 
-Route::get('/', 'Admin\MusicController@add')->name('home');
+Route::get('/', 'Admin\MusicController@index')->name('home');
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
