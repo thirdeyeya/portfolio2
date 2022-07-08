@@ -14,15 +14,14 @@ class CreateFavoritesTable extends Migration
     public function up()
     {
         Schema::create('favorites', function (Blueprint $table) {
-            $table->id();
-            $table->unsignedBigInteger('favorite_id');
+            $table->bigIncrements('id');
             $table->bigInteger('user_id')->unsigned();
             $table->bigInteger('music_id')->unsigned();
             $table->timestamps();
             
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('music_id')->references('id')->on('musics')->onDelete('cascade');
-                $table->unique(['user_id', 'music_id']);
+            $table->foreign('music_id')->references('id')->on('music')->onDelete('cascade');
+            $table->unique(['user_id', 'music_id']);
         });
     }
 

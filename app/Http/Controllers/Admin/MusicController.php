@@ -113,4 +113,13 @@ class MusicController extends Controller
         $music->delete();
         return redirect('admin/music/');
     }
+    
+     public function favorite_music()
+    {
+        $music = \Auth::user()->favorite_music()->orderBy('created_at', 'desc')->paginate(10);
+        $data = [
+            'music' => $music,
+        ];
+        return view('music.favorites', $data);
+    }
 }

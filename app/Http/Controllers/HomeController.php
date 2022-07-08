@@ -23,6 +23,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+        $music = \\Auth::user()->music()->orderBy('created_at', 'desc')->paginate(10);
+        $data = [
+            'music' => $music,
+        ];
+        return view('home', $data);
     }
 }

@@ -73,6 +73,8 @@
                   <a class="dropdown-item" href="{{ route('profile') }}">プロフィール</a>
                   
                   <a class="dropdown-item" href="{{ route('comment') }}">コメント</a>
+                  
+                  <a class="dropdown-item" href="{{ route('favorites') }}">お気に入り</a>
                 </div>
               </li>
               @endguest
