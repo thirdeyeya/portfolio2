@@ -34,8 +34,8 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::post('music/music_tone', 'Admin\Music_toneController@create'); 
      Route::get('music/gender', 'Admin\GenderController@add');
      Route::post('music/gender', 'Admin\GenderController@create'); 
-     Route::post('/music/{music}/favorite', [FavoriteController::class, 'store'])->name('favorite.store');
-     Route::delete('/music/{music}/unfavorite', [FavoriteController::class, 'destroy'])->name('favorite.destroy');
+     Route::post('/music/{music}/favorite', 'FavoriteController@store')->name('favorite.store');
+     Route::delete('/music/{music}/unfavorite', 'FavoriteController@destroy')->name('favorite.destroy');
      Route::get('/favorites', [MusicController::class, 'favorite_music'])->name('favorites');
 });
 Auth::routes();

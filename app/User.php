@@ -41,4 +41,21 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(Music::class, 'favorites', 'user_id', 'music_id');
     }
+    
+    public function music()
+    {
+        return $this->hasMany(Music::class);
+    }
+    
+    public function has_favorite_music(){
+    //$this->favorite_music（配列）の件数が0より大きければtrue, そうでなければfalseを返す
+        foreach($this->favorite_music as $value){
+            if ($value > 0) {
+                return true;
+            } else {
+                return false;  
+            }   
+        }
+        
+    }
 }
