@@ -11,10 +11,10 @@
 |
 */
 
-/*Route::get('/', function () {
-    return view('welcome');
-});
-*/
+// Route::get('/', function () {
+//    return view('welcome');
+// });
+
 Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::get('music/create', 'Admin\MusicController@add')->name('comment');
      Route::post('music/create', 'Admin\MusicController@create'); 
@@ -36,7 +36,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth'], function() {
      Route::post('music/gender', 'Admin\GenderController@create'); 
      Route::post('/music/{music}/favorite', 'FavoriteController@store')->name('favorite.store');
      Route::delete('/music/{music}/unfavorite', 'FavoriteController@destroy')->name('favorite.destroy');
-     Route::get('/favorites', [MusicController::class, 'favorite_music'])->name('favorites');
+     Route::get('/favorites', 'MusicController@favorite_music')->name('favorites');
 });
 Auth::routes();
 

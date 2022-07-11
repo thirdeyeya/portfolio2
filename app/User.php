@@ -50,7 +50,7 @@ class User extends Authenticatable
     public function has_favorite_music(){
     //$this->favorite_music（配列）の件数が0より大きければtrue, そうでなければfalseを返す
         foreach($this->favorite_music as $value){
-            if ($value > 0) {
+            if ($value !== 0) {
                 return true;
             } else {
                 return false;  

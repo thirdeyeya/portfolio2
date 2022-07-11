@@ -11,6 +11,7 @@ class MusicSeeder extends Seeder
      */
     public function run()
     {
+        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Music::truncate();
         Music::create([
             'title' => 'CORE PRIDE',
@@ -33,5 +34,6 @@ class MusicSeeder extends Seeder
             'music_tone_id' => 1,
             'gender_id' => config('gender.女性シンガー')
         ]);
+        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
 }
