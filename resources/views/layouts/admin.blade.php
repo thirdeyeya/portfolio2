@@ -70,6 +70,8 @@
                   <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
                     @csrf
                   </form>
+                  <a class="dropdown-item" href="{{ route('home') }}">検索</a>
+                  
                   <a class="dropdown-item" href="{{ route('profile') }}">プロフィール</a>
                   
                   <a class="dropdown-item" href="{{ route('comment') }}">コメント</a>

@@ -15,6 +15,7 @@ class CreateMusicTable extends Migration
     {
         Schema::create('music', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('youtube');
             $table->string('title');
             $table->string('artist_name');
             $table->string('anime_official_cite');

@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', '登録済みコメントの一覧')
+@section('title', 'アニソン検索')
 
 @section('content')
 <div class="container">
@@ -40,18 +40,20 @@
     </div>
       @foreach($posts as $search)
         <div class="col-3">
-          <form action="{{ route('favorite.store', $search) }}" method="post">
+          <form action="{{ route('favorite.store', $search->id) }}" method="post">
             @csrf
-            <button>☆</button>
+            <button type="submit">☆</button>
           </form>
-          <img src="{{ \Str::limit($search->image_path, 250) }}" alt="cdジャケット" width="180" height="180" /> 
+          <img src="{{ asset($search->image_path) }}" alt="cdジャケット" width="180" height="180" />
+          <br>
+          <a href="{{ \Str::limit($search->youtube, 250) }}">YouTube</a>
           <p>曲名：{{ \Str::limit($search->title, 250) }}</p>
         　<p>アーティスト名：{{ \Str::limit($search->artist_name, 250) }}</p>
         　<a href="{{ \Str::limit($search->anime_official_cite, 250) }}">アニメ公式</a>
         　<br>  
         　<a href="{{ \Str::limit($search->artist_official_cite, 250) }}">アーティスト公式</a>
         　<br>
-        　<a href="{{ action('Admin\MusicController@add') }}">コメント</a>
+        　<a href="{{ action('Admin\CommentController@show') }}">コメント</a>
         </div>    　
       @endforeach
 　</div>

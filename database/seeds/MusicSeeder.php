@@ -14,6 +14,7 @@ class MusicSeeder extends Seeder
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
         Music::truncate();
         Music::create([
+            'youtube' => 'https://www.youtube.com/watch?v=QdvaYmxtwUU',
             'title' => 'CORE PRIDE',
             'artist_name' => 'UVERworld',
             'anime_official_cite' => 'https://www.ao-ex.com/tv/',
@@ -21,10 +22,11 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/CORE PRIDE.jpg',
             'genre_id' => 1,
             'music_tone_id' => 2,
-            'gender_id' => config('gender.男性シンガー')
+            'gender_id' => config('gender.男性ボーカル')
         ]);
         
         Music::create([
+            'youtube' => 'https://www.youtube.com/watch?v=I0xRbWqIohQ',
             'title' => 'ふわふわ時間',
             'artist_name' => '放課後ティータイム',
             'anime_official_cite' => 'https://www.tbs.co.jp/anime/k-on/',
@@ -32,7 +34,7 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/huwahuwatime.jpg',
             'genre_id' => 2,
             'music_tone_id' => 1,
-            'gender_id' => config('gender.女性シンガー')
+            'gender_id' => config('gender.女性ボーカル')
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }

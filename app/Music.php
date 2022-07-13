@@ -9,6 +9,7 @@ class Music extends Model
     protected $guarded = array('id');
 
     public static $rules = array(
+        'youtube'=> 'required',
         'title' => 'required',
         'artist_name' => 'required',
         'anime_official_cite' => 'required',
