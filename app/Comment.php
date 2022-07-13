@@ -10,5 +10,9 @@ class Comment extends Model
 
     public static $rules = array(
         'body' => 'required',
-    );    
+    );
+    
+    public function user(){
+        return $this->belongsTo('App\User');
+    }
 }

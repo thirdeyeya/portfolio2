@@ -1,4 +1,4 @@
-@extends('layouts.profile')
+@extends('layouts.admin')
 
 @section('title', 'プロフィールの編集作成')
 
@@ -16,12 +16,6 @@
 			    @endforeach
 			</ul>
 		    @endif
-		    <div class="form-group row">
-			<label class="col-md-2" for="title">氏名</label>
-			<div class="col-md-10">
-			    <input type="text" class="form-control" name="name" value="{{ $profile_form->name }}">
-			</div>
-		    </div>
 		    <div class="form-group row">
 			<label class="col-md-2" for="title">性別</label>
 			<div class="col-md-10">

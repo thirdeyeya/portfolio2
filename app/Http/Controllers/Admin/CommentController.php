@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Comment;
+use Auth;
+use Music;
 
 class CommentController extends Controller
 {
@@ -16,6 +18,7 @@ class CommentController extends Controller
     }
     public function create(Request $request) 
     {
+        $music = Music::find($request->id);
         // Validationを行う
         $this->validate($request, Comment::$rules);
         $comment = new Comment();
@@ -23,49 +26,51 @@ class CommentController extends Controller
         
         // データベースに保存する
         $comment->fill($form);
+        $comment->user_id = Auth::id();
         $comment->save();
 
-        return redirect('comment/create');
+        return redirect('comment/create', ['music_form' => $music]);
     }
+    
     public function add() 
     {
         return view('admin.music.comment');
     }
     
     public function edit(Request $request)
-  {
+    {
       // News Modelからデータを取得する
-      $comment = Comment::find($request->id);
-      if (empty($comment)) {
-        abort(404);    
-      }
-      return view('admin.music.edit', ['comment_form' => $comment]);
-  }
+        $comment = Comment::find($request->id);
+        if (empty($comment)) {
+            abort(404);    
+        }
+        return view('admin.music.edit', ['comment_form' => $comment]);
+    }
 
 
-  public function update(Request $request)
-  {
+    public function update(Request $request)
+    {
       // Validationをかける
-      $this->validate($request, Comment::$rules);
+        $this->validate($request, Comment::$rules);
       // News Modelからデータを取得する
-      $comment = Comment::find($request->id);
+        $comment = Comment::find($request->id);
       // 送信されてきたフォームデータを格納する
-      $comment_form = $request->all();
-      unset($comment_form['_token']);
+        $comment_form = $request->all();
+        unset($comment_form['_token']);
 
       // 該当するデータを上書きして保存する
-      $comment->fill($comment_form)->save();
+        $comment->fill($comment_form)->save();
 
-      return redirect('comment');
-  }
+        return redirect('comment');
+    }
   
-  public function delete(Request $request)
-  {
+    public function delete(Request $request)
+    {
       // 該当するNews Modelを取得
-      $comment = Comment::find($request->id);
+        $comment = Comment::find($request->id);
       // 削除する
-      $comment->delete();
-      return redirect('comment/');
-  }  
+        $comment->delete();
+        return redirect('comment/');
+    }  
 }
 

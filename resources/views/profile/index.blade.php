@@ -10,18 +10,14 @@
       <a href="{{ action('Admin\ProfileController@edit', ['id' => $profile->id]) }}">編集</a>
       @endif
     </div>
+    <div>
+      @if ($profile == NULL)
+      <a href="{{ action('Admin\ProfileController@create', ['id' => $profile->id]) }}">新規作成</a>
+      @endif
+    </div>
 <div class="container">
     <h2>プロフィール</h2>
     @if ($profile != NULL)
-      <hr color="#fff">
-      <div class="row">
-          <div class="col-md-4">
-              氏名
-          </div>
-          <div class="col-md">
-              {{$profile->name}}
-          </div>
-      </div>
       <hr color="#fff">
       <div class="row">
           <div class="col-md-4">

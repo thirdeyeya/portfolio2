@@ -24,7 +24,7 @@
                         <tbody>
                             @foreach($posts as $comment)
                                 <tr>
-                                    <th>{{ $comment->profile_name }}</th>
+                                    <th>{{ $comment->user->name }}</th>
                                     <td>{{ Str::limit($comment->body, 250) }}
                                         <div>
                                             <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集</a>

@@ -66,6 +66,6 @@ class ProfileController extends Controller
       $profile_history->edited_at = Carbon::now();
       $profile_history->save();
       
-      return redirect('admin/profile/edit?id='.$profile->id);
+      return redirect('profile');
     }
 }
