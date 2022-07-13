@@ -7,29 +7,31 @@ use App\Http\Controllers\Controller;
 
 use App\Comment;
 use Auth;
-use Music;
+use App\Music;
 
 class CommentController extends Controller
 {
     public function show(Request $request) 
     {
+        $music = Music::find($request->id);
         $posts = Comment::all();
-        return view('admin.music.commentindex', ['posts' => $posts]);
+        return view('admin.music.commentindex', ['posts' => $posts, 'music_form' => $music]);
     }
     public function create(Request $request) 
     {
-        $music = Music::find($request->id);
         // Validationを行う
         $this->validate($request, Comment::$rules);
+        $music = Music::find($request->id);
         $comment = new Comment();
         $form = $request->all();
         
         // データベースに保存する
         $comment->fill($form);
         $comment->user_id = Auth::id();
+        $comment->music_id = Music::id();
         $comment->save();
 
-        return redirect('comment/create', ['music_form' => $music]);
+        return redirect('comment/create');
     }
     
     public function add() 
