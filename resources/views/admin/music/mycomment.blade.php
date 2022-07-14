@@ -17,7 +17,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($user_form->comments as $comment)
+                            @foreach(Auth::user()->comments as $comment)
                                 <tr>
                                     <th>{{ $comment->music->title }}</th>
                                     <td>{{ Str::limit($comment->body, 250) }}
