@@ -32,7 +32,7 @@ class ProfileController extends Controller
         $profile->fill($form);
         $profile->save();  
 
-        return redirect('admin/profile/create');
+        return redirect('profile/create');
     }
 
     public function edit(Request $request)
@@ -66,6 +66,6 @@ class ProfileController extends Controller
       $profile_history->edited_at = Carbon::now();
       $profile_history->save();
       
-      return redirect('profile');
+      return redirect('profile/edit?id='.$profile->id);
     }
 }

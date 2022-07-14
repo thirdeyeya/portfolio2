@@ -12,7 +12,7 @@
     </div>
     <div>
       @if ($profile == NULL)
-      <a href="{{ action('Admin\ProfileController@create', ['id' => $profile->id]) }}">新規作成</a>
+      <a href="{{ action('Admin\ProfileController@create') }}">新規作成</a>
       @endif
     </div>
 <div class="container">

@@ -53,7 +53,7 @@
         　<br>  
         　<a href="{{ \Str::limit($search->artist_official_cite, 250) }}">アーティスト公式</a>
         　<br>
-        　<a href="{{ action('Admin\CommentController@show') }}">コメント</a>
+        　<a href="{{ action('Admin\CommentController@show', ['id' => $search->id]) }}">コメント</a>
         </div>    　
       @endforeach
 　</div>

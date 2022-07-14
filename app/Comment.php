@@ -15,4 +15,8 @@ class Comment extends Model
     public function user(){
         return $this->belongsTo('App\User');
     }
+    
+    public function music(){
+        return $this->belongsTo('App\Music');
+    }
 }

@@ -21,6 +21,7 @@
                             <textarea class="form-control" name="body" rows="20">{{ old('body') }}</textarea>
                         </div>
                     </div>
+                    <input type="hidden" name="music_id" value={{ $music_id }}>
                     @csrf
                     <input type="submit" class="btn btn-primary" value="更新">
                 </form>

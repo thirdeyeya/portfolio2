@@ -8,7 +8,7 @@
         </div>
         <div class="row">
             <div class="col-md-2">
-                <a href="{{ action('Admin\CommentController@add') }}" role="button" class="btn btn-primary">新規作成</a>
+                <a href="{{ action('Admin\CommentController@add',['music_id'=> $music_form->id]) }}" role="button" class="btn btn-primary">新規作成</a>
             </div>
         </div> 
         <div class="row">
@@ -22,9 +22,13 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($posts as $comment)
+                            @foreach($music_form->comments as $comment)
                                 <tr>
-                                    <th>{{ $comment->user->name }}</th>
+                                    <th>{{ $comment->user->name }}
+                                    　　<div>
+                                    　　     <a href="{{ route('profile') }}">プロフィール</a>
+                                    　　</div>
+                                    </th>
                                     <td>{{ Str::limit($comment->body, 250) }}
                                         <div>
                                             <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集</a>

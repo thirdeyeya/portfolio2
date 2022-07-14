@@ -15,4 +15,8 @@ class Music extends Model
         'anime_official_cite' => 'required',
         'artist_official_cite' => 'required',
     );
+    
+    public function comments(){
+        return $this->hasMany('App\Comment');
+    }
 }

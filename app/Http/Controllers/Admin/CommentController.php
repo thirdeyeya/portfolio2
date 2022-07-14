@@ -14,29 +14,26 @@ class CommentController extends Controller
     public function show(Request $request) 
     {
         $music = Music::find($request->id);
-        $posts = Comment::all();
-        return view('admin.music.commentindex', ['posts' => $posts, 'music_form' => $music]);
+        return view('admin.music.commentindex', ['music_form' => $music]);
     }
     public function create(Request $request) 
     {
         // Validationを行う
         $this->validate($request, Comment::$rules);
-        $music = Music::find($request->id);
         $comment = new Comment();
         $form = $request->all();
         
         // データベースに保存する
         $comment->fill($form);
         $comment->user_id = Auth::id();
-        $comment->music_id = Music::id();
         $comment->save();
 
         return redirect('comment/create');
     }
     
-    public function add() 
+    public function add(Request $request) 
     {
-        return view('admin.music.comment');
+        return view('admin.music.comment', ['music_id' => $request->music_id]);
     }
     
     public function edit(Request $request)
@@ -56,6 +53,7 @@ class CommentController extends Controller
         $this->validate($request, Comment::$rules);
       // News Modelからデータを取得する
         $comment = Comment::find($request->id);
+        $music_id = $comment->music_id;
       // 送信されてきたフォームデータを格納する
         $comment_form = $request->all();
         unset($comment_form['_token']);
@@ -63,16 +61,17 @@ class CommentController extends Controller
       // 該当するデータを上書きして保存する
         $comment->fill($comment_form)->save();
 
-        return redirect('comment');
+        return redirect('comment/?id=' . $music_id);
     }
   
     public function delete(Request $request)
     {
       // 該当するNews Modelを取得
         $comment = Comment::find($request->id);
+        $music_id = $comment->music_id;
       // 削除する
         $comment->delete();
-        return redirect('comment/');
+        return redirect('comment/?id=' . $music_id);
     }  
 }
 
