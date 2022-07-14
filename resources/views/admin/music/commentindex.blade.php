@@ -26,17 +26,10 @@
                                 <tr>
                                     <th>{{ $comment->user->name }}
                                     　　<div>
-                                    　　     <a href="{{ route('profile') }}">プロフィール</a>
+                                    　　   <a href="{{ route('profile', ['user_id'=> $comment->user->id]) }}">プロフィール</a>
                                     　　</div>
                                     </th>
-                                    <td>{{ Str::limit($comment->body, 250) }}
-                                        <div>
-                                            <a href="{{ action('Admin\CommentController@edit', ['id' => $comment->id]) }}">編集</a>
-                                        </div>
-                                        <div>
-                                            <a href="{{ action('Admin\CommentController@delete', ['id' => $comment->id]) }}">削除</a>
-                                        </div>
-                       　　　　　　　　　　　</td>                 
+                                    <td>{{ Str::limit($comment->body, 250) }}</td>                 
                                 </tr>
                             @endforeach
                         </tbody>

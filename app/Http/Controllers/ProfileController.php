@@ -4,13 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-use App\Profile;
+use App\User;
 
 class ProfileController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $profile = Profile::first();
-        return view('profile.index', ['profile' => $profile]);
+        return view('profile.index', ['user' => User::find($request->user_id)]);
     }
 }

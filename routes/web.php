@@ -32,11 +32,13 @@ Route::group(['prefix' => '', 'middleware' => 'auth'], function() {
      Route::get('/', 'Admin\MusicController@index')->name('home');
      Route::get('comment/create', 'Admin\CommentController@add');
      Route::post('comment/create', 'Admin\CommentController@create');
-     Route::get('comment', 'Admin\CommentController@show')->name('comment');
+     Route::get('comment', 'Admin\CommentController@show');
      Route::get('comment/edit', 'Admin\CommentController@edit');
      Route::post('comment/edit', 'Admin\CommentController@update');
      Route::get('comment/delete', 'Admin\CommentController@delete');
+     Route::get('comment/index', 'Admin\CommentController@index')->name('comment');
 });
 Auth::routes();
 
 Route::get('/profile', 'ProfileController@index')->name('profile');
+

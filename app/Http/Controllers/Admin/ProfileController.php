@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
 use App\Profile;
+use Auth;
 
 use App\ProfileHistory;
 use Carbon\Carbon;
@@ -30,6 +31,7 @@ class ProfileController extends Controller
 
         // データベースに保存する
         $profile->fill($form);
+        $profile->user_id = Auth::id();
         $profile->save();  
 
         return redirect('profile/create');
@@ -50,16 +52,13 @@ class ProfileController extends Controller
       // Varidationを行う
       $this->validate($request, Profile::$rules);
 
-      // 既存のプロフィールデータを削除
-      Profile::truncate();
 
-      $profile = new Profile;
-      $form = $request->all();
+      $profile = Profile::find($request->id);
+      $profile_form = $request->all();
 
-      unset($form['_token']);
+      unset($profile_form['_token']);
 
-      $profile->fill($form);
-      $profile->save();
+      $profile->fill($profile_form)->save();
 
       $profile_history = new ProfileHistory;
       $profile_history->profile_id = $profile->id;

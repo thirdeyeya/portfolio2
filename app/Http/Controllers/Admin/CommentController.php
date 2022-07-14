@@ -8,6 +8,7 @@ use App\Http\Controllers\Controller;
 use App\Comment;
 use Auth;
 use App\Music;
+use App\User;
 
 class CommentController extends Controller
 {
@@ -16,6 +17,13 @@ class CommentController extends Controller
         $music = Music::find($request->id);
         return view('admin.music.commentindex', ['music_form' => $music]);
     }
+    
+    public function index(Request $request) 
+    {
+        $user = User::find($request->id);
+        return view('admin.music.mycomment', ['user_form' => $user]);
+    }
+    
     public function create(Request $request) 
     {
         // Validationを行う
