@@ -24,6 +24,7 @@ class CreateMusicTable extends Migration
             $table->integer('genre_id');
             $table->integer('music_tone_id');
             $table->string('gender_id');
+            $table->integer('anime_id');
             $table->timestamps();
         });
     }

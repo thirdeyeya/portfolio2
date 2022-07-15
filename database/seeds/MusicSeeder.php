@@ -22,7 +22,8 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/CORE PRIDE.jpg',
             'genre_id' => 1,
             'music_tone_id' => 2,
-            'gender_id' => config('gender.男性ボーカル')
+            'gender_id' => config('gender.男性ボーカル'),
+            'anime_id' => 1
         ]);
         
         Music::create([
@@ -34,7 +35,8 @@ class MusicSeeder extends Seeder
             'image_path' => 'img/huwahuwatime.jpg',
             'genre_id' => 2,
             'music_tone_id' => 1,
-            'gender_id' => config('gender.女性ボーカル')
+            'gender_id' => config('gender.女性ボーカル'),
+            'anime_id' => 2
         ]);
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
     }
