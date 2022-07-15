@@ -42,10 +42,11 @@ class MusicController extends Controller
         if($cond_anime_title){
             $animes = Anime::where('title', 'like', '%' . $cond_anime_title . '%')->get();
             
-            $posts = collect();
-            dd($posts);
+            $posts = collect($animes);
+           
             foreach($animes as $anime){
-                $posts->concat($anime->music);
+                $posts->concat($animes)->concat($anime->music);
+                
             }
         }
         return view('admin.music.index', ['posts' => $posts, 'cond_genre' => $cond_genre, 'genres' => $genres, 'cond_music_tone' => $cond_music_tone, 'music_tones' => $music_tones, 'cond_gender' => $cond_gender, 'genders' => $genders]);
