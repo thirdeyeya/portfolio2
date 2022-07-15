@@ -7,7 +7,7 @@
     <div class="col-3">
       <h4>アニメタイトル</h4>
       <form action="{{ action('Admin\MusicController@index') }}" method="get">
-        <input type="text" name="anime">
+        <input type="text" name="anime_title">
         <input type="submit" class="btn btn-primary" value="検索"> 
       </form>
       <br>

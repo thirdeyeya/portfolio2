@@ -9,6 +9,7 @@ use App\Music;
 use App\Genre;
 use App\Music_tone;
 use App\Gender;
+use App\Anime;
 
 class MusicController extends Controller
 {
@@ -18,7 +19,7 @@ class MusicController extends Controller
         $cond_music_tone = $request->music_tone_id;
         $cond_gender = $request->gender_id;
         $cond_artist_name = $request->artist_name;
-        $cond_anime = $request->anime_id;
+        $cond_anime_title = $request->anime_title;
         $genres = Genre::all();
         $music_tones = Music_tone::all();
         $genders = config('gender');
@@ -35,10 +36,18 @@ class MusicController extends Controller
         if($cond_artist_name){
             $q->where('artist_name', 'like',  '%' . $cond_artist_name . '%');
         }
-        if($cond_anime){
-            $q->where('anime_id', 'like',  '%' . $cond_anime . '%');
-        }
+        
         $posts = $q->get();
+        
+        if($cond_anime_title){
+            $animes = Anime::where('title', 'like', '%' . $cond_anime_title . '%')->get();
+            
+            $posts = collect();
+            dd($posts);
+            foreach($animes as $anime){
+                $posts->concat($anime->music);
+            }
+        }
         return view('admin.music.index', ['posts' => $posts, 'cond_genre' => $cond_genre, 'genres' => $genres, 'cond_music_tone' => $cond_music_tone, 'music_tones' => $music_tones, 'cond_gender' => $cond_gender, 'genders' => $genders]);
     }
 
