@@ -5,6 +5,12 @@
 <div class="container">
   <div class="row">
     <div class="col-3">
+      <h4>アニメまたはアーティスト名</h4>
+      <form action="{{ action('Admin\MusicController@index') }}" method="post">
+        <input type="text" name=“textbox”>
+        <input type="submit" class="btn btn-primary" value="検索"> 
+      </form>
+      <br>
       <form action="{{ action('Admin\MusicController@index') }}" method="get"> 
         <div>
           <h4>ジャンル</h4>
