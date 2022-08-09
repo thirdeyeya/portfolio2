@@ -15,7 +15,7 @@ class CreateMusicTonesTable extends Migration
     {
         Schema::create('music_tones', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title');//曲調を保存するカラム
             $table->timestamps();
         });
     }

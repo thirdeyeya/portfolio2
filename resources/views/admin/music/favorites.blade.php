@@ -6,12 +6,13 @@
 <div class="container">
   <div class="row">
     　@foreach($posts as $search)
-    　　<div class="col-3">
+    　　<div class="col-3 music-tone-color-{{ $search->music_tone_id }}">
           <form action="{{ route('favorite.destroy', $search->id) }}" method="post">
             @csrf
-            <button>★</button>
+            <button class="button">★</button>
           </form>
-          <img src="{{ asset($search->image_path) }}" alt="cdジャケット" width="180" height="180" /> 
+          <img src="{{ asset($search->image_path) }}" alt="cdジャケット" width="180" height="180" />
+          <br>
           <a href="{{ \Str::limit($search->youtube, 250) }}">YouTube</a>
           <p>曲名：{{ \Str::limit($search->title, 250) }}</p>
         　<p>アーティスト名：{{ \Str::limit($search->artist_name, 250) }}</p>
@@ -19,9 +20,10 @@
         　<br>  
         　<a href="{{ \Str::limit($search->artist_official_cite, 250) }}">アーティスト公式</a>
         　<br>
-        　<a href="{{ action('Admin\MusicController@add') }}">コメント</a>
+        　<a href="{{ action('Admin\CommentController@show', ['id' => $search->id]) }}">コメント</a>
         </div>　
       @endforeach
+      <div>{{ $posts->links() }}</div>
   </div>
 </div>  
 @endsection()

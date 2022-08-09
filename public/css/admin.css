@@ -42,3 +42,67 @@ body {
   color: #fff;
 }
 
+.music-tone-color-1 {
+  background-color: #ffff00;
+}  
+
+.music-tone-color-2 {
+  background-color: #c0c0c0;
+} 
+
+.music-tone-color-3 {
+  background-color: #ff7fbf;
+} 
+
+.music-tone-color-4 {
+  background-color: #7fffff;
+} 
+
+.music-tone-color-5 {
+  background-color: #7fbfff;
+} 
+
+.music-tone-color-6 {
+  background-color: #bfff7f;
+} 
+
+.music-tone-color-7 {
+  background-color: #ff7fff;
+} 
+
+.music-tone-color-8 {
+  background-color: #7fbfff;
+} 
+
+.music-tone-color-9 {
+  background-color: #bf7fff;
+} 
+
+.music-tone-color-10 {
+  background-color: #ce9fff;
+} 
+
+.music-tone-color-11 {
+  background-color: #ffbf7f;
+} 
+
+.music-tone-color-12 {
+  background-color: #ff7f7f;
+} 
+
+.music-tone-color-13 {
+  background-color: #9eceff;
+} 
+
+.button {
+  border: none;
+  background: transparent;
+  font-size: 150%;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); 
+  margin-top: 5%;
+  margin-bottom: 50px;
+}

@@ -19,6 +19,7 @@ class CreateFavoritesTable extends Migration
             $table->bigInteger('music_id')->unsigned();
             $table->timestamps();
             
+            //お気に入り登録が解除された際に、お気に入り登録に紐づく楽曲も削除する
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('music_id')->references('id')->on('music')->onDelete('cascade');
             $table->unique(['user_id', 'music_id']);

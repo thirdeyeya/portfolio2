@@ -15,7 +15,7 @@ class CreateAnimesTable extends Migration
     {
         Schema::create('animes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('title');
+            $table->string('title');//アニメを保存するカラム
             $table->timestamps();
         });
     }

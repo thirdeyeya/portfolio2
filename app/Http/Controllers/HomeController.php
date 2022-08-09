@@ -23,7 +23,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $music = \\Auth::user()->music()->orderBy('created_at', 'desc')->paginate(10);
+        $music = \Auth::user()->music()->orderByDesc('created_at')->paginate(24);
         $data = [
             'music' => $music,
         ];

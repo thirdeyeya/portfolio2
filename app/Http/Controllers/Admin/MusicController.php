@@ -13,6 +13,7 @@ use App\Anime;
 
 class MusicController extends Controller
 {
+    // 曲を検索する
     public function index(Request $request)
     {
         $cond_genre = $request->genre_id;
@@ -37,24 +38,27 @@ class MusicController extends Controller
             $q->where('artist_name', 'like',  '%' . $cond_artist_name . '%');
         }
         
-        $posts = $q->get();
+        $posts = $q->paginate(24);
         
         if($cond_anime_title){
             $animes = Anime::where('title', 'like', '%' . $cond_anime_title . '%')->get();
-            
-            $posts = collect($animes);
-           
+            if(count($animes )>0){
+            $posts = collect();
             foreach($animes as $anime){
-                $posts->concat($animes)->concat($anime->music);
-                
+                $posts=$posts->concat($anime->music)->paginate(24);
+            
+            }
             }
         }
+        $posts->appends(['gender_id' => $request->gender_id, 'music_tone_id' => $request->music_tone_id, 'genre_id' => $request->genre_id]);
+        
         return view('admin.music.index', ['posts' => $posts, 'cond_genre' => $cond_genre, 'genres' => $genres, 'cond_music_tone' => $cond_music_tone, 'music_tones' => $music_tones, 'cond_gender' => $cond_gender, 'genders' => $genders]);
     }
-
+    
+    // お気に入りの曲一覧を表示する
      public function favorite_music()
     {
-        $posts = \Auth::user()->favorite_music()->orderBy('created_at', 'desc')->paginate(10);
+        $posts = \Auth::user()->favorite_music()->orderByDesc('created_at')->paginate(24);
         $data = [
             'posts' => $posts,
         ];

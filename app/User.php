@@ -57,6 +57,7 @@ class User extends Authenticatable
         return false;
     }
     public function profile(){
+        //1対1リレーション
         return $this->hasOne('App\Profile');
     }
     

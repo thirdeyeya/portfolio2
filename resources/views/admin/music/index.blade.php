@@ -2,19 +2,23 @@
 @section('title', 'アニソン検索')
 
 @section('content')
-<div class="container">
+<div class="container grid">
   <div class="row">
-    <div class="col-3">
-      <h4>アニメタイトル</h4>
-      <form action="{{ action('Admin\MusicController@index') }}" method="get">
+    <div style="margin-right: 5px;"> 
+    <h4>アニメタイトル</h4>
+        <form action="{{ action('Admin\MusicController@index') }}" method="get">
+          <div style="width:40px;">
         <input type="text" name="anime_title">
-        <input type="submit" class="btn btn-primary" value="検索"> 
+        <input type="submit" class="btn btn-primary" value="検索">
+        </div> 
       </form>
       <br>
       <h4>アーティスト名</h4>
       <form action="{{ action('Admin\MusicController@index') }}" method="get">
+        <div style="width:40px;">
         <input type="text" name="artist_name">
         <input type="submit" class="btn btn-primary" value="検索"> 
+        </div>
       </form>
       <br>
       <form action="{{ action('Admin\MusicController@index') }}" method="get"> 
@@ -47,14 +51,16 @@
                 <option value="{{ $num }}" @if($cond_gender == $num) selected="selected" @endif>{{ $str }}</option>
               @endforeach 
             </select>
-        </div>    
+        </div>
+        <br>
       </form> 
+      </div>
     </div>
       @foreach($posts as $search)
-        <div class="col-3">
+        <div class="music-tone-color-{{ $search->music_tone_id }}">
           <form action="{{ route('favorite.store', $search->id) }}" method="post">
             @csrf
-            <button type="submit">☆</button>
+            <button type="submit" class="button">☆</button>
           </form>
           <img src="{{ asset($search->image_path) }}" alt="cdジャケット" width="180" height="180" />
           <br>
@@ -69,5 +75,6 @@
         </div>    　
       @endforeach
 　</div>
+　<div>{{ $posts->links() }}</div>
 </div>　
 @endsection

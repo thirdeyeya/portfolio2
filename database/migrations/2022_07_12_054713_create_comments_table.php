@@ -20,6 +20,7 @@ class CreateCommentsTable extends Migration
             $table->string('body');
             $table->timestamps();
             
+            //コメントが消された際に、コメントに紐づくuserと曲も一緒に削除する
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('music_id')->references('id')->on('music')->onDelete('cascade');
         });

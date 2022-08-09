@@ -17,6 +17,7 @@ class Music extends Model
     );
     
     public function comments(){
+        //コメントモデルを複数返す
         return $this->hasMany('App\Comment');
     }
 }

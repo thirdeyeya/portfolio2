@@ -23,5 +23,37 @@ class GenreSeeder extends Seeder
         Genre::create([
             'title' => 'キャラソン',
         ]);
+        
+        Genre::create([
+            'title' => 'J-POP',
+        ]);
+        
+        Genre::create([
+            'title' => 'R&B',
+        ]);
+        
+        Genre::create([
+            'title' => 'ジャズ',
+        ]);
+        
+        Genre::create([
+            'title' => 'ポップ',
+        ]);
+        
+        Genre::create([
+            'title' => 'エレクトロニック',
+        ]);
+        
+        Genre::create([
+            'title' => 'ヒップホップ',
+        ]);
+        
+        Genre::create([
+            'title' => 'オルタナティブ',
+        ]);
+        
+        Genre::create([
+            'title' => 'ラップ',
+        ]);
     }
 }

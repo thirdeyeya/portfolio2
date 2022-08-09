@@ -12,18 +12,24 @@ use App\User;
 
 class CommentController extends Controller
 {
+    // コメント一覧を取得する
     public function show(Request $request) 
     {
+        // モデルを取得する
         $music = Music::find($request->id);
+        
         return view('admin.music.commentindex', ['music_form' => $music]);
     }
     
+    // ユーザーごとのコメントを取得する
     public function index(Request $request) 
     {
+        // モデルを取得する
         $user = User::find($request->id);
         return view('admin.music.mycomment', ['user_form' => $user]);
     }
     
+    // コメントを作成する
     public function create(Request $request) 
     {
         // Validationを行う
@@ -39,14 +45,16 @@ class CommentController extends Controller
         return redirect('comment/create');
     }
     
+    // 楽曲ごとのコメントを取得する
     public function add(Request $request) 
     {
         return view('admin.music.comment', ['music_id' => $request->music_id]);
     }
     
+    // 編集するコメントを取得する
     public function edit(Request $request)
     {
-      // News Modelからデータを取得する
+      // Comment Modelからデータを取得する
         $comment = Comment::find($request->id);
         if (empty($comment)) {
             abort(404);    
@@ -54,12 +62,12 @@ class CommentController extends Controller
         return view('admin.music.edit', ['comment_form' => $comment]);
     }
 
-
+    // コメントを編集する
     public function update(Request $request)
     {
       // Validationをかける
         $this->validate($request, Comment::$rules);
-      // News Modelからデータを取得する
+      // Comment Modelからデータを取得する
         $comment = Comment::find($request->id);
         $music_id = $comment->music_id;
       // 送信されてきたフォームデータを格納する
@@ -72,13 +80,15 @@ class CommentController extends Controller
         return redirect('comment/?id=' . $music_id);
     }
   
+    // コメントを削除する
     public function delete(Request $request)
     {
-      // 該当するNews Modelを取得
+      // 該当するComment Modelを取得
         $comment = Comment::find($request->id);
         $music_id = $comment->music_id;
       // 削除する
         $comment->delete();
+        
         return redirect('comment/?id=' . $music_id);
     }  
 }

@@ -13,6 +13,7 @@ class Comment extends Model
     );
     
     public function user(){
+        //1対多のモデルを構築する
         return $this->belongsTo('App\User');
     }
     

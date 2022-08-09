@@ -13,11 +13,13 @@ use Carbon\Carbon;
 
 class ProfileController extends Controller
 {
+    // プロフィール作成画面を表示する
     public function add()
     {
         return view('admin.profile.create');
     }
-
+    
+    // プロフィールを作成する
     public function create(Request $request)
     {
         // Varidationを行う
@@ -37,6 +39,7 @@ class ProfileController extends Controller
         return redirect('profile/create');
     }
 
+    // 編集するプロフィールを取得する
     public function edit(Request $request)
     {
       $profile = Profile::find($request->id);
@@ -46,20 +49,21 @@ class ProfileController extends Controller
       return view('admin.profile.edit', ['profile_form' => $profile]);
     }
 
+    // プロフィールを編集する
     public function update(Request $request)
     {
         
       // Varidationを行う
       $this->validate($request, Profile::$rules);
 
-
+      //モデルを取得する
       $profile = Profile::find($request->id);
       $profile_form = $request->all();
 
       unset($profile_form['_token']);
 
       $profile->fill($profile_form)->save();
-
+      //更新履歴
       $profile_history = new ProfileHistory;
       $profile_history->profile_id = $profile->id;
       $profile_history->edited_at = Carbon::now();
