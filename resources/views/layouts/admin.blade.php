@@ -33,7 +33,7 @@
       <nav class="navbar navbar-expand-md navbar-dark navbar-laravel">
         <div class="container">
           <a class="navbar-brand" href="{{ url('/') }}">
-            {{ config('app.name', 'Laravel') }}
+            {{ config('app.name', 'アニソン検索') }}
           </a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -71,7 +71,7 @@
                   </form>
                   <a class="dropdown-item" href="{{ route('home') }}">検索</a>
                   
-                  <a class="dropdown-item" href="{{ route('profile') }}">プロフィール</a>
+                  <a class="dropdown-item" href="{{ route('profile',['user_id'=>Auth::id()]) }}">プロフィール</a>
                   
                   <a class="dropdown-item" href="{{ route('comment') }}">コメント</a>
                   
