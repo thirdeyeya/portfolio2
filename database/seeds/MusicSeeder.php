@@ -11,7 +11,7 @@ class MusicSeeder extends Seeder
      */
     public function run()
     {
-        DB::statement('SET FOREIGN_KEY_CHECKS=0;');
+        DB::connection()->getSchemaBuilder()->disableForeignKeyConstraints();
         Music::truncate();
         Music::create([
             'youtube' => 'https://www.youtube.com/watch?v=QdvaYmxtwUU',
@@ -4718,6 +4718,6 @@ class MusicSeeder extends Seeder
             'gender_id' => config('gender.男性ボーカル'),
             'anime_id' => 187
         ]);
-        DB::statement('SET FOREIGN_KEY_CHECKS=1;');
+        DB::connection()->getSchemaBuilder()->enableForeignKeyConstraints();
     }
 }
